@@ -33,6 +33,7 @@ func calculate(_ args: [String]) -> Int {
     else {                                 // SIMPLE ARITHMETIC
         let num1 = Int(args[0])!
         let num2 = Int(args[2])!
+
         let op = args[1]
         
         if (op == "+") {
@@ -108,7 +109,7 @@ calculate("5 fact") == 120
 
 // Implement calculate([String]) and calculate(String)
 // to handle negative numbers
-/*
+
 calculate(["2", "+", "-2"]) == 0
 calculate(["2", "-", "-2"]) == 4
 calculate(["2", "*", "-2"]) == -4
@@ -123,12 +124,63 @@ calculate("2 - -2") == 4
 calculate("-2 / 2") == -1
 
 calculate("1 -2 3 -4 5 count") == 5
-*/
+
  
 // Implement calculate([String]) and calculate(String)
 // to use floating-point values
-/*
+
 func calculate(_ args: [String]) -> Double {
+    let length = args.count
+    // Error Checking
+    if (length == 1) {
+        return 0.0
+    }
+    let lastElement : String = args[length - 1]
+    var res = 0.0
+    
+    if (lastElement == "count") {          // COUNT
+        return Double(length) - 1.0
+    }
+    else if (lastElement == "avg") {       // AVERAGE
+        for index in 0...(length - 2) {
+            res += Double(args[index])!
+        }
+        return res / (Double(length - 1))
+    }
+    else if (lastElement == "fact") {      // FACTORIAL
+        let factorialNum = Int(args[0])!
+        if (factorialNum == 0) {
+            return 1.0
+        } else {
+            res = 1.0
+            for num in 1...factorialNum {
+                res *= Double(num)
+            }
+            return res
+        }
+    }
+    else {                                 // SIMPLE ARITHMETIC
+        let num1 = Double(args[0])!
+        let num2 = Double(args[2])!
+
+        let op = args[1]
+        
+        if (op == "+") {
+            return num1 + num2
+        }
+        else if (op == "-") {
+            return num1 - num2
+        }
+        else if (op == "*") {
+            return num1 * num2
+        }
+        else if (op == "/") {
+            return num1 / num2
+        }
+        else if (op == "%") {
+            return num1.truncatingRemainder(dividingBy: num2)
+        }
+    }
     return -1.0
 }
 func calculate(_ arg: String) -> Double {
@@ -142,4 +194,4 @@ calculate(["2.5", "*", "2.5"]) == 6.25
 calculate(["2.0", "/", "2.0"]) == 1.0
 calculate(["2.0", "%", "2.0"]) == 0.0
 calculate("1.0 2.0 3.0 4.0 5.0 count") == 5
-*/
+
