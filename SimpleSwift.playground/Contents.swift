@@ -1,6 +1,56 @@
 print("Welcome to the UW Calculator Playground")
 
 func calculate(_ args: [String]) -> Int {
+    let length = args.count
+    // Error Checking
+    if (length == 1) {
+        return 0
+    }
+    let lastElement : String = args[length - 1]
+    var res = 0
+    
+    if (lastElement == "count") {          // COUNT
+        return length - 1
+    }
+    else if (lastElement == "avg") {       // AVERAGE
+        for index in 0...(length - 2) {
+            res += Int(args[index])!
+        }
+        return res / (length - 1)
+    }
+    else if (lastElement == "fact") {      // FACTORIAL
+        let factorialNum = Int(args[0])!
+        if (factorialNum == 0) {
+            return 1
+        } else {
+            res = 1
+            for num in 1...factorialNum {
+                res *= num
+            }
+            return res
+        }
+    }
+    else {                                 // SIMPLE ARITHMETIC
+        let num1 = Int(args[0])!
+        let num2 = Int(args[2])!
+        let op = args[1]
+        
+        if (op == "+") {
+            return num1 + num2
+        }
+        else if (op == "-") {
+            return num1 - num2
+        }
+        else if (op == "*") {
+            return num1 * num2
+        }
+        else if (op == "/") {
+            return num1 / num2
+        }
+        else if (op == "%") {
+            return num1 % num2
+        }
+    }
     return -1
 }
 
