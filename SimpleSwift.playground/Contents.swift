@@ -55,7 +55,12 @@ func calculate(_ args: [String]) -> Int {
 }
 
 func calculate(_ arg: String) -> Int {
-    return -1
+    let substringArray = arg.split(separator: " ")
+    var stringArray : [String] = []
+    for index in 0...(substringArray.count - 1) {
+        stringArray.append(String(substringArray[index]))
+    }
+    return calculate(stringArray)
 }
 
 // -------------------------------------------
