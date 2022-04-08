@@ -184,7 +184,12 @@ func calculate(_ args: [String]) -> Double {
     return -1.0
 }
 func calculate(_ arg: String) -> Double {
-    return -1.0
+    let substringArray = arg.split(separator: " ")
+    var stringArray : [String] = []
+    for index in 0...(substringArray.count - 1) {
+        stringArray.append(String(substringArray[index]))
+    }
+    return calculate(stringArray)
 }
 
 calculate(["2.0", "+", "2.0"]) == 4.0
@@ -193,5 +198,5 @@ calculate(["12.0", "-", "12.0"]) == 0.0
 calculate(["2.5", "*", "2.5"]) == 6.25
 calculate(["2.0", "/", "2.0"]) == 1.0
 calculate(["2.0", "%", "2.0"]) == 0.0
-calculate("1.0 2.0 3.0 4.0 5.0 count") == 5
+calculate("1.0 2.0 3.0 4.0 5.0 count") == 5.0
 
